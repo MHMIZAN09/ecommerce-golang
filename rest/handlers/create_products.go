@@ -21,8 +21,8 @@ func CreateProductHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid request body", 400)
 		return
 	}
-	newProduct.ID = len(database.Products) + 1
-	database.Products = append(database.Products, newProduct)
+	
+	newProduct = database.Store(newProduct)
 
 	utils.SendData(w, newProduct, 201)
 }

@@ -8,5 +8,5 @@ import (
 
 func GetProductsHandler(w http.ResponseWriter, r *http.Request) {
 
-	utils.SendData(w, database.Products, 200)
+	utils.SendData(w, database.List(), 200)
 }

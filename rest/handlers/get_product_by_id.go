@@ -16,14 +16,12 @@ func GetProductByIDHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	for _, product := range database.Products {
-		// log.Println(idx, product)
-
-		if product.ID == id {
-			utils.SendData(w, product, 200)
-			return
-		}
+	product := database.Get(id)
+	if product == nil {
+		utils.SendError(w, "Product not found", 404)
+		return
 	}
 
-	http.Error(w, "Product not found", 404)
+
+	utils.SendData(w, product, 200)
 }
